@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBATeams.UI", "NBATeams.UI\NBATeams.UI.csproj", "{ADE0D6F5-84E6-438E-A3A4-C7D826B533FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBATeams.UI", "NBATeams.UI\NBATeams.UI.csproj", "{ADE0D6F5-84E6-438E-A3A4-C7D826B533FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{3677B3B5-940C-4EB6-B824-E47861E7420E}"
 EndProject
@@ -11,9 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{A9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{C5268186-8F2D-4517-BBAC-CFCC63867115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBATeams.Data", "NBATeams.Data\NBATeams.Data.csproj", "{2418D634-BA9C-41C1-BA51-170D06673909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBATeams.Data", "NBATeams.Data\NBATeams.Data.csproj", "{2418D634-BA9C-41C1-BA51-170D06673909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBATeams.Domain", "NBATeams.Domain\NBATeams.Domain.csproj", "{168E6DE8-0EAA-46A3-90C4-504F8B57292C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBATeams.Domain", "NBATeams.Domain\NBATeams.Domain.csproj", "{168E6DE8-0EAA-46A3-90C4-504F8B57292C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{4AE0F336-138F-4A9F-AFF2-05D28F935C67}"
+	ProjectSection(SolutionItems) = preProject
+		Award.cs = Award.cs
+		Court.cs = Court.cs
+		Game.cs = Game.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +48,7 @@ Global
 		{ADE0D6F5-84E6-438E-A3A4-C7D826B533FF} = {3677B3B5-940C-4EB6-B824-E47861E7420E}
 		{2418D634-BA9C-41C1-BA51-170D06673909} = {C5268186-8F2D-4517-BBAC-CFCC63867115}
 		{168E6DE8-0EAA-46A3-90C4-504F8B57292C} = {A9865FB5-AC85-43C9-85D1-5E936D459246}
+		{4AE0F336-138F-4A9F-AFF2-05D28F935C67} = {C5268186-8F2D-4517-BBAC-CFCC63867115}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADF217CE-2B48-4AF0-8DE3-BC01B4BFF132}
