@@ -14,7 +14,7 @@ namespace NBATeams.Data.Models
         public string LogoPath { get; set; }
         public int Wins { get; set; }
         public int Lost { get; set; }
-        public List<Award> Awards { get; set; }
-        public List<Player> Players { get; set; }
+        public List<Award> Awards { get; set; } = new List<Award>();
+        public List<Player> Players { get; set; } = new List<Player>();
     }
 }
