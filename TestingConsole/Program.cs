@@ -25,7 +25,11 @@ using (var db = new NBATeamsDbContext())
     Court court = new Court()
     {
         Name = "Courttest",
-        City = "City test"
+        Location = new Location()
+        {
+            City = "New York",
+            Street = "Street 123"
+        }
     };
 
     Team team = new Team()
