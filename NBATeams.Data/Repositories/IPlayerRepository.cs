@@ -13,9 +13,11 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Team> GetAllTeams();
 
+        public Team GetTeamById(int id);
+
         public IEnumerable<Game> GetAllGames();
 
-        public IEnumerable<Player> GetPlayerByTeamName(string teamName);
+        public IEnumerable<Player> GetPlayersByTeamName(string teamName);
 
         public Player GetPlayerById(int PlayerId);
 

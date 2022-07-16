@@ -188,12 +188,17 @@ namespace NBATeams.Data.Repositories
             return _context.Teams;
         }
 
+        public Team GetTeamById(int TeamId)
+        {
+            return _context.Teams.Find(TeamId);
+        }
+
         public Player GetPlayerById(int PlayerId)
         {
             return _context.Players.Find(PlayerId);
         }
 
-        public IEnumerable<Player> GetPlayerByTeamName(string TeamName)
+        public IEnumerable<Player> GetPlayersByTeamName(string TeamName)
         {
             return _context.Players.Where(x => x.Team.Name == TeamName);
         }

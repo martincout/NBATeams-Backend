@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using NBATeams.Data.Models;
+using NBATeams.Domain.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,12 @@ namespace Petfy.Domain.Extensions
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Player, PlayerDTO>();
+            CreateMap<Team, TeamDTO>();
+            CreateMap<Stat, StatDTO>();
+            CreateMap<Game, GameDTO>();
+            CreateMap<Court, CourtDTO>();
+            CreateMap<Location, LocationDTO>();
             /*CreateMap<Pet, PetDTO>()
                 .ForMember(
                     dest => dest.MainPhotoUrl,

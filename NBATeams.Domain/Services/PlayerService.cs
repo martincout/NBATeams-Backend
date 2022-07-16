@@ -23,27 +23,37 @@ namespace NBATeams.Domain.Services
         }
         public IEnumerable<GameDTO> GetAllGames()
         {
-            throw new NotImplementedException();
+            var games = _playerRepository.GetAllTeams();
+            var gamesToReturn = _mapper.Map<IEnumerable<GameDTO>>(games);
+            return gamesToReturn;
         }
 
         public IEnumerable<PlayerDTO> GetAllPlayers()
         {
-            throw new NotImplementedException();
+            var players = _playerRepository.GetAllPlayers();
+            var playersToReturn = _mapper.Map<IEnumerable<PlayerDTO>>(players);
+            return playersToReturn;
         }
 
         public IEnumerable<TeamDTO> GetAllTeams()
         {
-            throw new NotImplementedException();
+            var teams = _playerRepository.GetAllTeams();
+            var teamsToReturn = _mapper.Map<IEnumerable<TeamDTO>>(teams);
+            return teamsToReturn;
         }
 
         public PlayerDTO GetPlayerById(int PlayerId)
         {
-            throw new NotImplementedException();
+            var player = _playerRepository.GetPlayerById(PlayerId);
+            var playerToReturn = _mapper.Map<PlayerDTO>(player);
+            return playerToReturn;
         }
 
-        public IEnumerable<PlayerDTO> GetPlayerByTeam(string TeamName)
+        public IEnumerable<PlayerDTO> GetPlayersByTeam(string TeamName)
         {
-            throw new NotImplementedException();
+            var players = _playerRepository.GetPlayersByTeamName(TeamName);
+            var playersToReturn = _mapper.Map<IEnumerable<PlayerDTO>>(players);
+            return playersToReturn;
         }
         public void AddGame(GameDTO Game)
         {
@@ -52,7 +62,38 @@ namespace NBATeams.Domain.Services
 
         public void AddPlayer(PlayerDTO Player)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var team = _playerRepository.GetTeamById(Player.TeamId);
+                Stat stats = new Stat()
+                {
+                    Height = Player.Stats.Height,
+                    Weight = Player.Stats.Weight,
+                    PPG = Player.Stats.PPG,
+                    RPG = Player.Stats.RPG,
+                    APG = Player.Stats.APG,
+                    PIE = Player.Stats.PIE,
+                    Assists = Player.Stats.Assists,
+                    Score = Player.Stats.Score, 
+                };
+                Player player = new Player()
+                {
+                     Name = Player.Name,
+                     LastName = Player.LastName,
+                     Number = Player.Number,
+                     ImageProfilePath = Player.ImageProfilePath,
+                     Position = Player.Position,
+                     Stats = stats,
+                     BirthDate = Player.BirthDate,
+                     Experience = Player.Experience,
+                     Team = team
+                };
+                _playerRepository.AddPlayer(player);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void AddTeam(TeamDTO Team)

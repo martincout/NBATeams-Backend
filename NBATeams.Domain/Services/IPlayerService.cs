@@ -11,7 +11,7 @@ namespace NBATeams.Domain.Services
 
         public IEnumerable<GameDTO> GetAllGames();
 
-        public IEnumerable<PlayerDTO> GetPlayerByTeam(string TeamName);
+        public IEnumerable<PlayerDTO> GetPlayersByTeam(string TeamName);
 
         public PlayerDTO GetPlayerById(int PlayerId);
 
