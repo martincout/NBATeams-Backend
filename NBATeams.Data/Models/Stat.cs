@@ -24,10 +24,27 @@
         /// <summary>
         /// Converts the Weight from Kilograms into Pounds
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Pounds (LB)</returns>
         public double WeightInLB()
         {
             return Weight * 2.20462262185;
+        }
+        /// <summary>
+        /// Converts the Height from Meters into Feet
+        /// </summary>
+        /// <returns>Feet</returns>
+        public string HeightInFeet()
+        {
+            //Convert meters into feet
+            double inFeet = Height / 0.3048;
+            //Get the left part before the decimal point
+            int ft = (int)inFeet;
+            //Fetch the right part of Feet (after decimal point) and divide it by 0.08333 to convert it into Inches
+            double temp = (inFeet - Math.Truncate(inFeet)) / 0.08333;
+            //Get the int part
+            double inchesLeft = (int)temp;
+            //Return
+            return ft + "'" + inchesLeft;
         }
     }
 }

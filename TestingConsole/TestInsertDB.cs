@@ -105,6 +105,9 @@ Game game = new Game()
 //Testing convertion of Weight
 Console.WriteLine(player.Stats.WeightInLB());
 
+//Testing convertion of Height
+Console.WriteLine(player.Stats.HeightInFeet());
+
 /// <summary>
 /// Test Data. Create Database using ENTITY FRAMEWORK-114
 /// </summary>
