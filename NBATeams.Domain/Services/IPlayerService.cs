@@ -21,11 +21,11 @@ namespace NBATeams.Domain.Services
 
         public void AddGame(GameDTO Game);
 
-        public PlayerDTO EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer);
+        public Player EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer);
 
-        public PlayerDTO EditTeam(int TeamID, TeamDTO UpdatedPlayer);
+        public Team EditTeam(int TeamID, TeamDTO UpdatedPlayer);
 
-        public PlayerDTO EditGame(int GameID, GameDTO UpdatedGame);
+        public Game EditGame(int GameID, GameDTO UpdatedGame);
 
         public bool DeletePlayer(int PlayerId);
 

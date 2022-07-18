@@ -1,4 +1,5 @@
-﻿using NBATeams.Data.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NBATeams.Data.Data;
 using NBATeams.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -128,7 +129,7 @@ namespace NBATeams.Data.Repositories
             return false;
         }
 
-        public Game EditGame(int GameID, Game UpdatedGame)
+        public Game EditGame(Game UpdatedGame)
         {
             try
             {
@@ -143,7 +144,7 @@ namespace NBATeams.Data.Repositories
             return UpdatedGame;
         }
 
-        public Player EditPlayer(int PlayerId, Player UpdatedPlayer)
+        public Player EditPlayer(Player UpdatedPlayer)
         {
             try
             {
@@ -158,7 +159,7 @@ namespace NBATeams.Data.Repositories
             return UpdatedPlayer;
         }
 
-        public Team EditTeam(int TeamID, Team UpdatedTeam)
+        public Team EditTeam(Team UpdatedTeam)
         {
             try
             {
@@ -192,10 +193,15 @@ namespace NBATeams.Data.Repositories
         {
             return _context.Teams.Find(TeamId);
         }
-
+        /// <summary>
+        /// Returns Player including stats
+        /// </summary>
+        /// <param name="PlayerId"></param>
+        /// <returns>Player with Stats</returns>
         public Player GetPlayerById(int PlayerId)
         {
-            return _context.Players.Find(PlayerId);
+            return _context.Players.Include(p => p.Stats)
+                .FirstOrDefault(p => p.Id == PlayerId);
         }
 
         public IEnumerable<Player> GetPlayersByTeamName(string TeamName)

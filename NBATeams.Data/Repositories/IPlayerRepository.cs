@@ -28,11 +28,11 @@ namespace NBATeams.Data.Repositories
 
         public void AddGame(Game Game);
 
-        public Player EditPlayer(int PlayerId, Player UpdatedPlayer);
+        public Player EditPlayer(Player UpdatedPlayer);
 
-        public Team EditTeam(int TeamID, Team UpdatedTeam);
+        public Team EditTeam(Team UpdatedTeam);
 
-        public Game EditGame(int GameID, Game UpdatedGame);
+        public Game EditGame(Game UpdatedGame);
 
         public bool DeletePlayer(int PlayerId);
 

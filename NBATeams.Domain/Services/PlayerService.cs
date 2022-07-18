@@ -135,17 +135,50 @@ namespace NBATeams.Domain.Services
             throw new NotImplementedException();
         }
 
-        public PlayerDTO EditGame(int GameID, GameDTO UpdatedGame)
+        public Game EditGame(int GameID, GameDTO UpdatedGame)
         {
             throw new NotImplementedException();
         }
 
-        public PlayerDTO EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer)
+        public Player EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer)
         {
-            throw new NotImplementedException();
+            var oldPlayer = _playerRepository.GetPlayerById(PlayerId);
+            if (oldPlayer != null)
+            {
+                //Stats
+                oldPlayer.Stats.Height = UpdatedPlayer.Stats.Height;
+                oldPlayer.Stats.Weight = UpdatedPlayer.Stats.Weight;
+                oldPlayer.Stats.PPG = UpdatedPlayer.Stats.PPG;
+                oldPlayer.Stats.RPG = UpdatedPlayer.Stats.RPG;
+                oldPlayer.Stats.APG = UpdatedPlayer.Stats.APG;
+                oldPlayer.Stats.PIE = UpdatedPlayer.Stats.PIE;
+                oldPlayer.Stats.Assists = UpdatedPlayer.Stats.Assists;
+                oldPlayer.Stats.Score = UpdatedPlayer.Stats.Score;
+                //Team
+                Team team = _playerRepository.GetTeamById(UpdatedPlayer.TeamId);
+                //Player
+                oldPlayer.ImageProfilePath = UpdatedPlayer.ImageProfilePath;
+                oldPlayer.Name = UpdatedPlayer.Name;
+                oldPlayer.LastName = UpdatedPlayer.LastName;
+                oldPlayer.Number = UpdatedPlayer.Number;
+                oldPlayer.BirthDate = UpdatedPlayer.BirthDate;
+                oldPlayer.Experience = UpdatedPlayer.Experience;
+                oldPlayer.Position = UpdatedPlayer.Position;
+                oldPlayer.Team = team;
+                return _playerRepository.EditPlayer(oldPlayer);
+
+                try
+                {
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return null;
         }
 
-        public PlayerDTO EditTeam(int TeamID, TeamDTO UpdatedPlayer)
+        public Team EditTeam(int TeamID, TeamDTO UpdatedPlayer)
         {
             throw new NotImplementedException();
         }
