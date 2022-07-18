@@ -191,7 +191,10 @@ namespace NBATeams.Data.Repositories
 
         public Team GetTeamById(int TeamId)
         {
-            return _context.Teams.Find(TeamId);
+            return _context.Teams
+                .Include(p => p.Court)
+                .Include(p => p.Awards)
+                .FirstOrDefault(x => x.Id == TeamId);
         }
         /// <summary>
         /// Returns Player including stats

@@ -167,20 +167,24 @@ namespace NBATeams.Domain.Services
                 oldPlayer.Team = team;
                 return _playerRepository.EditPlayer(oldPlayer);
 
-                try
-                {
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
             }
             return null;
         }
 
-        public Team EditTeam(int TeamID, TeamDTO UpdatedPlayer)
+        public Team EditTeam(int TeamID, TeamDTO UpdatedTeam)
         {
-            throw new NotImplementedException();
+            var oldTeam = _playerRepository.GetTeamById(TeamID);
+            if (oldTeam != null)
+            {
+                Court court = _playerRepository.GetTeamById(TeamID).Court;
+                court.Name = UpdatedTeam.Court.Name;
+                oldTeam.Name = UpdatedTeam.Name;
+                oldTeam.Court = court;
+                //Team
+                return _playerRepository.EditTeam(oldTeam);
+
+            }
+            return null;
         }
 
         

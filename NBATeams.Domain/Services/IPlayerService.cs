@@ -23,7 +23,7 @@ namespace NBATeams.Domain.Services
 
         public Player EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer);
 
-        public Team EditTeam(int TeamID, TeamDTO UpdatedPlayer);
+        public Team EditTeam(int TeamID, TeamDTO UpdatedTeam);
 
         public Game EditGame(int GameID, GameDTO UpdatedGame);
 
