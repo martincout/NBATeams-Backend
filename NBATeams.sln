@@ -15,13 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBATeams.Data", "NBATeams.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBATeams.Domain", "NBATeams.Domain\NBATeams.Domain.csproj", "{168E6DE8-0EAA-46A3-90C4-504F8B57292C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{4AE0F336-138F-4A9F-AFF2-05D28F935C67}"
-	ProjectSection(SolutionItems) = preProject
-		Award.cs = Award.cs
-		Court.cs = Court.cs
-		Game.cs = Game.cs
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,7 +41,6 @@ Global
 		{ADE0D6F5-84E6-438E-A3A4-C7D826B533FF} = {3677B3B5-940C-4EB6-B824-E47861E7420E}
 		{2418D634-BA9C-41C1-BA51-170D06673909} = {C5268186-8F2D-4517-BBAC-CFCC63867115}
 		{168E6DE8-0EAA-46A3-90C4-504F8B57292C} = {A9865FB5-AC85-43C9-85D1-5E936D459246}
-		{4AE0F336-138F-4A9F-AFF2-05D28F935C67} = {C5268186-8F2D-4517-BBAC-CFCC63867115}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADF217CE-2B48-4AF0-8DE3-BC01B4BFF132}

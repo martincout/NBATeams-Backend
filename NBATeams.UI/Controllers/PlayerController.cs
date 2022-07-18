@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NBATeams.Data.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +50,7 @@ namespace NBATeams.UI.Controllers
         {
             try
             {
-                _playerService.EditPlayer(id, player)
+                _playerService.EditPlayer(id, player);
             }
             catch (DbUpdateConcurrencyException ex)
             {
