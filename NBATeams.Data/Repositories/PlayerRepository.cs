@@ -202,5 +202,10 @@ namespace NBATeams.Data.Repositories
         {
             return _context.Players.Where(x => x.Team.Name == TeamName);
         }
+
+        public Game GetGameById(int id)
+        {
+            return _context.Games.Find(id);
+        }
     }
 }

@@ -103,7 +103,26 @@ namespace NBATeams.Domain.Services
 
         public bool DeleteGame(int GameId)
         {
-            throw new NotImplementedException();
+            if (GameId <= 0)
+            {
+                return false;
+            }
+
+            var game = _playerRepository.GetGameById(GameId);
+
+            if (game == null)
+            {
+                throw new ApplicationException("Game not found");
+            }
+
+            try
+            {
+                return _playerRepository.DeleteGame(GameId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool DeletePlayer(int PlayerId)
