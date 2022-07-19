@@ -15,6 +15,8 @@ namespace NBATeams.Domain.Services
 
         public PlayerDTO GetPlayerById(int PlayerId);
 
+        public TeamDTO GetTeamById(int TeamId);
+
         public void AddPlayer(PlayerDTO Player);
 
         public void AddTeam(TeamDTO Team);

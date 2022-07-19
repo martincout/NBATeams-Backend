@@ -14,61 +14,61 @@ namespace NBATeams.UI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayersController : ControllerBase
+    public class TeamsController : ControllerBase
     {
         private readonly IPlayerService _playerService;
 
-        public PlayersController(IPlayerService playerService)
+        public TeamsController(NBATeamsDbContext context)
         {
-            _playerService = playerService;
+            _playerService = context;
         }
 
-        // GET: api/Players
+        // GET: api/Teams
         [HttpGet]
-        public  ActionResult<IEnumerable<Player>> GetPlayers()
+        public ActionResult<IEnumerable<TeamDTO>> GetTeams()
         {
-          if (_playerService.GetAllPlayers() == null)
+          if (_playerService.GetAllTeams() == null)
           {
               return NotFound();
           }
-            return Ok(_playerService.GetAllPlayers());
+            return Ok(_playerService.GetAllTeams());
         }
 
-        // GET: api/Players/5
+        // GET: api/Teams/5
         [HttpGet("{id}")]
-        public ActionResult<Player> GetPlayer(int id)
+        public ActionResult<Team> GetTeam(int id)
         {
-          if (_playerService.GetAllPlayers() == null)
+          if (_playerService.GetTeamById(id)== null)
           {
               return NotFound();
           }
-            var player = _playerService.GetPlayerById(id);
+            var team = _playerService.GetTeamById(id);
 
-            if (player == null)
+            if (team == null)
             {
                 return NotFound();
             }
 
-            return Ok(player);
+            return Ok(team);
         }
 
-        // PUT: api/Players/5
+        // PUT: api/Teams/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public IActionResult PutPlayer(int id, PlayerDTO player)
+        public IActionResult PutTeam(int id, TeamDTO team)
         {
-            if (_playerService.GetPlayerById(id) == null)
+            if (_playerService.GetTeamById(id) == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                return Ok(_playerService.EditPlayer(id,player));
+                return Ok(_playerService.EditTeam(id, team));
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlayerExists(id))
+                if (!TeamExists(id))
                 {
                     return NotFound();
                 }
@@ -81,36 +81,40 @@ namespace NBATeams.UI.Controllers
             return NoContent();
         }
 
-        // POST: api/Players
+        // POST: api/Teams
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Player>> PostPlayer(PlayerDTO player)
+        public ActionResult<TeamDTO> PostTeam(TeamDTO team)
         {
           if (_playerService == null)
           {
-              return Problem("Entity set 'NBATeamsDbContext.Players'  is null.");
+              return Problem("Entity set 'NBATeamsDbContext'  is null.");
           }
-            _playerService.AddPlayer(player);
+            _playerService.AddTeam(team);
 
-            return CreatedAtAction("GetPlayer", player);
+            return CreatedAtAction("GetTeam", team);
         }
 
-        // DELETE: api/Players/5
+        // DELETE: api/Teams/5
         [HttpDelete("{id}")]
-        public IActionResult DeletePlayer(int id)
+        public IActionResult DeleteTeam(int id)
         {
-            if (_playerService.GetAllPlayers() == null)
+            if (_playerService.GetTeamById(id) == null)
+            {
+                return NotFound();
+            }
+            var team = _playerService.GetTeamById(id);
+            if (team == null)
             {
                 return NotFound();
             }
 
-            return Ok(_playerService.DeletePlayer(id));
-
+            return Ok(_playerService.DeleteTeam(id));
         }
 
-        private bool PlayerExists(int id)
+        private bool TeamExists(int id)
         {
-            return (_playerService.GetPlayerById(id) != null);
+            return (_playerService.GetTeamById(id) != null);
         }
     }
 }

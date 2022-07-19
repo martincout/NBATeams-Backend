@@ -187,6 +187,11 @@ namespace NBATeams.Domain.Services
             return null;
         }
 
-        
+        public TeamDTO GetTeamById(int TeamId)
+        {
+            var team = _playerRepository.GetTeamById(TeamId);
+            var teamToReturn = _mapper.Map<TeamDTO>(team);
+            return teamToReturn;
+        }
     }
 }
