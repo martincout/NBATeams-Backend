@@ -12,6 +12,8 @@ namespace NBATeams.Data.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Number { get; set; }
+        public double Weight { get; set; }
+        public double Height { get; set; }
         public string? ImageProfilePath { get; set; }
         public string Position { get; set; }
         public Stat Stats { get; set; }
@@ -31,6 +33,32 @@ namespace NBATeams.Data.Models
             {
                 return age;
             }
+        }
+
+        /// <summary>
+        /// Converts the Weight from Kilograms into Pounds
+        /// </summary>
+        /// <returns>Pounds (LB)</returns>
+        public double WeightInLB()
+        {
+            return Weight * 2.20462262185;
+        }
+        /// <summary>
+        /// Converts the Height from Meters into Feet
+        /// </summary>
+        /// <returns>Feet</returns>
+        public string HeightInFeet()
+        {
+            //Convert meters into feet
+            double inFeet = Height / 0.3048;
+            //Get the left part before the decimal point
+            int ft = (int)inFeet;
+            //Fetch the right part of Feet (after decimal point) and divide it by 0.08333 to convert it into Inches
+            double temp = (inFeet - Math.Truncate(inFeet)) / 0.08333;
+            //Get the int part
+            double inchesLeft = (int)temp;
+            //Return
+            return ft + "'" + inchesLeft;
         }
     }
 }

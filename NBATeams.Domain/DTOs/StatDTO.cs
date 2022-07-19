@@ -9,8 +9,7 @@ namespace NBATeams.Domain.DTOs
     public class StatDTO
     {
         public int Id { get; set; }
-        public double Height { get; set; }
-        public double Weight { get; set; }
+        
         public decimal PPG { get; set; }
         public decimal RPG { get; set; }
         public decimal APG { get; set; }

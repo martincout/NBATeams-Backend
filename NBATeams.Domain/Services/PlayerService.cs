@@ -67,8 +67,6 @@ namespace NBATeams.Domain.Services
                 var team = _playerRepository.GetTeamById(Player.TeamId);
                 Stat stats = new Stat()
                 {
-                    Height = Player.Stats.Height,
-                    Weight = Player.Stats.Weight,
                     PPG = Player.Stats.PPG,
                     RPG = Player.Stats.RPG,
                     APG = Player.Stats.APG,
@@ -86,7 +84,9 @@ namespace NBATeams.Domain.Services
                      Stats = stats,
                      BirthDate = Player.BirthDate,
                      Experience = Player.Experience,
-                     Team = team
+                     Team = team,
+                     Height = Player.Height,
+                     Weight = Player.Weight,
                 };
                 _playerRepository.AddPlayer(player);
             }
@@ -146,8 +146,8 @@ namespace NBATeams.Domain.Services
             if (oldPlayer != null)
             {
                 //Stats
-                oldPlayer.Stats.Height = UpdatedPlayer.Stats.Height;
-                oldPlayer.Stats.Weight = UpdatedPlayer.Stats.Weight;
+                oldPlayer.Height = UpdatedPlayer.Height;
+                oldPlayer.Weight = UpdatedPlayer.Weight;
                 oldPlayer.Stats.PPG = UpdatedPlayer.Stats.PPG;
                 oldPlayer.Stats.RPG = UpdatedPlayer.Stats.RPG;
                 oldPlayer.Stats.APG = UpdatedPlayer.Stats.APG;

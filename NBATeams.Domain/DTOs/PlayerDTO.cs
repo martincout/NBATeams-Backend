@@ -11,6 +11,8 @@ namespace NBATeams.Domain.DTOs
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Number { get; set; }
+        public double Height { get; set; }
+        public double Weight { get; set; }
         public string ImageProfilePath { get; set; }
         public string Position { get; set; }
         public StatDTO Stats { get; set; }
