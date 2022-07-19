@@ -12,12 +12,12 @@ namespace NBATeams.Data.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Number { get; set; }
-        public string ImageProfilePath { get; set; }
+        public string? ImageProfilePath { get; set; }
         public string Position { get; set; }
         public Stat Stats { get; set; }
         public DateTime BirthDate { get; set; }
         public string Experience { get; set; } //Rookie, 2 year, 3 years.
-        public Team Team { get; set; }
+        public Team? Team { get; set; }
 
         public int Age()
         {
