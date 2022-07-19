@@ -18,7 +18,7 @@ namespace NBATeams.UI.Controllers
     {
         private readonly IPlayerService _playerService;
 
-        public TeamsController(NBATeamsDbContext context)
+        public TeamsController(IPlayerService context)
         {
             _playerService = context;
         }
