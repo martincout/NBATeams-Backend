@@ -2,7 +2,8 @@
 {
     public class Stat
     {
-        public int Id { get; set; }
+        public int Id { get; set; } 
+        public int average { get; set; }
         public int playerId { get; set; }
         public string Height { get; set; }
         public string Weight { get; set; }
@@ -17,9 +18,9 @@
         /// Calculates the average of all the values in order to qualify the Player by Its Stats and Scores.
         /// </summary>
         /// <returns>Average Score</returns>
-        public decimal AveragePoints()
+        public void AveragePoints()
         {
-            return decimal.Round((PPG + RPG + APG + PIE + Assists + Points) / 6, 2);
+            this.average=(int)decimal.Round((PPG + RPG + APG + PIE + Assists + Points) / 6);
         }
     }
 }
