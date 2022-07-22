@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Petfy.Domain.DTO
+namespace NBATeams.Domain.DTOs
 {
     public class RegisterDTO
     {

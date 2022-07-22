@@ -1,20 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NBATeams.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NBATeams.Data.Data
 {
-    public class NBATeamsDbContext : DbContext
+    public class NBATeamsDbContext : IdentityDbContext<
+        User, AppRole, int,
+        IdentityUserClaim<int>, AppRole, IdentityUserLogin<int>,
+        IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
+        private readonly IConfiguration _configuration;
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<CustomTeam> CustomTeam { get; set; }
         public DbSet<Stat> Stats { get; set; }
+
+        public NBATeamsDbContext(DbContextOptions<NBATeamsDbContext> options, IConfiguration configuration) : base(options)
+        {
+            _configuration = configuration;
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,12 +33,12 @@ namespace NBATeams.Data.Data
         {
             //Delete behaviour of Game with two Teams.
             modelBuilder.Entity<Game>()
-                .HasOne<Team>(t => t.Local)
+                .HasOne(t => t.Local)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Game>()
-                .HasOne<Team>(t => t.Visit)
+                .HasOne(t => t.Visit)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
 

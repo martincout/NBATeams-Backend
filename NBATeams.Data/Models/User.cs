@@ -1,8 +1,10 @@
-﻿namespace NBATeams.Data.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace NBATeams.Data.Models
 {
-    public class User
+    public class User : IdentityUser<int>
     {
-        public int Id { get; set; }
         public List<CustomTeam> CustomTeams { get; set; } = new List<CustomTeam>();
+        public AppRole UserRole { get; set; }
     }
 }
