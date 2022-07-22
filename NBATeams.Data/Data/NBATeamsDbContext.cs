@@ -7,8 +7,8 @@ using NBATeams.Data.Models;
 namespace NBATeams.Data.Data
 {
     public class NBATeamsDbContext : IdentityDbContext<
-        User, AppRole, int,
-        IdentityUserClaim<int>, AppRole, IdentityUserLogin<int>,
+        AppUser, AppRole, int,
+        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, //AppRole is the problem
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         private readonly IConfiguration _configuration;

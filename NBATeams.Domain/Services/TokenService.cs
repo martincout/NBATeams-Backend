@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using NBATeams.Data.Models;
@@ -12,15 +11,15 @@ namespace NBATeams.Domain.Services
     public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey _key;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public TokenService(IConfiguration config, UserManager<User> userManager)
+        public TokenService(IConfiguration config, UserManager<AppUser> userManager)
         {
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
             _userManager = userManager;
         }
 
-        public async Task<string> CreateToken(User user)
+        public async Task<string> CreateToken(AppUser user)
         {
             var claims = new List<Claim>()
             {

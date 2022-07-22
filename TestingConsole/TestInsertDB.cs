@@ -5,8 +5,6 @@ using TestingConsole;
 
 Stat stat = new Stat()
 {
-    Height = 1.8,
-    Weight = 100,
     RPG = 3,
     APG = 3,
     PIE = 3,
@@ -105,9 +103,9 @@ Game game = new Game()
 };
 
 //Testing convertion of Weight
-Console.WriteLine(player.Stats.WeightInLB());
+Console.WriteLine(player.WeightInLB());
 
 //Testing convertion of Height
-Console.WriteLine(player.Stats.HeightInFeet());
+Console.WriteLine(player.HeightInFeet());
 
 //CreateDatabase.Insert(); //inserts test data to database

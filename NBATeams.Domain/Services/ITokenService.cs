@@ -9,6 +9,6 @@ namespace NBATeams.Domain.Services
 {
     public interface ITokenService
     {
-        Task<string> CreateToken(User user);
+        Task<string> CreateToken(AppUser user);
     }
 }

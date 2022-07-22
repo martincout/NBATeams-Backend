@@ -2,9 +2,9 @@
 
 namespace NBATeams.Data.Models
 {
-    public class User : IdentityUser<int>
+    public class AppUser : IdentityUser<int>
     {
         public List<CustomTeam> CustomTeams { get; set; } = new List<CustomTeam>();
-        public AppRole UserRole { get; set; }
+        public IEnumerable<AppUserRole> UserRoles { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace Petfy.Domain.Extensions
             CreateMap<Team, TeamDTO>();
             CreateMap<Stat, StatDTO>();
             CreateMap<Game, GameDTO>();
+            CreateMap<AppUser, UserDTO>();
             CreateMap<Court, CourtDTO>()
                 .ForMember(
                     dest => dest.City,
