@@ -15,6 +15,7 @@ namespace NBATeams.Data.Data
         public DbSet<Game> Games { get; set; }
         public DbSet<CustomTeam> CustomTeam { get; set; }
         public DbSet<Stat> Stats { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
