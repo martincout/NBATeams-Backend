@@ -71,8 +71,7 @@ namespace NBATeams.Domain.Services
                     RPG = Player.Stats.RPG,
                     APG = Player.Stats.APG,
                     PIE = Player.Stats.PIE,
-                    Assists = Player.Stats.Assists,
-                    Score = Player.Stats.Score, 
+                    Assists = Player.Stats.Assists
                 };
                 Player player = new Player()
                 {
@@ -153,7 +152,6 @@ namespace NBATeams.Domain.Services
                 oldPlayer.Stats.APG = UpdatedPlayer.Stats.APG;
                 oldPlayer.Stats.PIE = UpdatedPlayer.Stats.PIE;
                 oldPlayer.Stats.Assists = UpdatedPlayer.Stats.Assists;
-                oldPlayer.Stats.Score = UpdatedPlayer.Stats.Score;
                 //Team
                 Team team = _playerRepository.GetTeamById(UpdatedPlayer.TeamId);
                 //Player

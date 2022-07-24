@@ -181,7 +181,7 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Player> GetAllPlayers()
         {
-            return _context.Players;
+            return _context.Players.Include(p => p.Stats);
         }
 
         public IEnumerable<Team> GetAllTeams()

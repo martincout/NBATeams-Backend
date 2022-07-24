@@ -16,5 +16,9 @@ namespace NBATeams.Data.Models
         public int Lost { get; set; }
         public List<Award> Awards { get; set; } = new List<Award>();
         public List<Player> Players { get; set; } = new List<Player>();
+        public int AverageTeam()
+        {
+            return Awards.Count;
+        }
     }
 }

@@ -8,15 +8,15 @@
         public decimal APG { get; set; }
         public decimal PIE { get; set; }
         public int Assists { get; set; }
-        public int Score { get; set; }
+        public int Points { get; set; }
 
         /// <summary>
         /// Calculates the average of all the values in order to qualify the Player by Its Stats and Scores.
         /// </summary>
         /// <returns>Average Score</returns>
-        public decimal AverageScore()
+        public int AveragePoints()
         {
-            return decimal.Round((PPG + RPG + APG + PIE + Assists + Score) / 6, 2);
+            return (int)decimal.Round((PPG + RPG + APG + PIE + Assists + Points) / 6);
         }
 
         
