@@ -16,5 +16,6 @@ namespace NBATeams.Domain.DTOs
         public int Lost { get; set; }
         public List<AwardDTO> Awards { get; set; }
         public List<PlayerDTO> Players { get; set; }
+        public int AverageOfTeam { get; set; }
     }
 }

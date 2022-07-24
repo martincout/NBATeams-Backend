@@ -13,9 +13,28 @@ namespace Petfy.Domain.Extensions
     {
         public AutoMapperProfiles()
         {
-            CreateMap<Player, PlayerDTO>();
+            CreateMap<Player, PlayerDTO>()
+                .ForMember(
+                    dest => dest.Stats,
+                    opt => opt.MapFrom(
+                            p => p.Stats
+                        )
+                )
+                .ForMember(
+                    dest => dest.Age,
+                    opt => opt.MapFrom(
+                            p => p.Age()
+                        )
+                );
+            CreateMap<Stat, StatDTO>()
+                .ForMember(
+                    dest => dest.Average,
+                    opt => opt.MapFrom(
+                            p => p.AveragePoints()
+                        )
+
+                );
             CreateMap<Team, TeamDTO>();
-            CreateMap<Stat, StatDTO>();
             CreateMap<Game, GameDTO>();
             CreateMap<Court, CourtDTO>()
                 .ForMember(

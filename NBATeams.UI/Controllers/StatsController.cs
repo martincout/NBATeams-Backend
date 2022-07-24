@@ -81,20 +81,7 @@ namespace NBATeams.UI.Controllers
             return NoContent();
         }
 
-        // POST: api/Stats
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Stat>> PostStat(Stat stat)
-        {
-          if (_context.Stats == null)
-          {
-              return Problem("Entity set 'NBATeamsDbContext.Stats'  is null.");
-          }
-            _context.Stats.Add(stat);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetStat", new { id = stat.Id }, stat);
-        }
+       
 
         // DELETE: api/Stats/5
         [HttpDelete("{id}")]

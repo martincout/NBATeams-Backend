@@ -9,14 +9,11 @@ namespace TestingConsole
         {
             Stat stat = new Stat()
             {
-                Height = 1.8,
-                Weight = 100,
                 RPG = 3,
                 APG = 3,
                 PIE = 3,
                 PPG = 3.5m,
                 Assists = 3,
-                Score = 3,
             };
 
             Console.WriteLine("Created Successfully");
