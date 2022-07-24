@@ -29,10 +29,4 @@
     <ProjectReference Include="..\NBATeams.Domain\NBATeams.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="NBATeams.Domain">
-      <HintPath>..\NBATeams.Domain\obj\Debug\net6.0\ref\NBATeams.Domain.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
