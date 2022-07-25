@@ -34,6 +34,17 @@ namespace NBATeams.UI.Controllers
             return Ok(_playerService.GetAllTeams());
         }
 
+        // GET: api/Teams
+        [HttpGet("teamsaddplayer")]
+        public ActionResult<IEnumerable<TeamRegisterPlayerDTO>> GetTeamsAddPlayer()
+        {
+            if (_playerService.GetAllTeams() == null)
+            {
+                return NotFound();
+            }
+            return Ok(_playerService.GetAllTeamsAddPlayer());
+        }
+
         // GET: api/Teams/5
         [HttpGet("{id}")]
         public ActionResult<Team> GetTeam(int id)

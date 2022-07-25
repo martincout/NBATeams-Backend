@@ -26,6 +26,10 @@ namespace Petfy.Domain.Extensions
                             p => p.Age()
                         )
                 );
+            CreateMap<Team, TeamRegisterPlayerDTO>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name));
+
             CreateMap<Stat, StatDTO>()
                 .ForMember(
                     dest => dest.Average,
