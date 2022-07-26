@@ -18,7 +18,7 @@ namespace NBATeams.Data.Models
         public List<Player> Players { get; set; } = new List<Player>();
         public int AverageTeam()
         {
-            return Awards.Count;
+            return Players.Select(x => x.Stats).Sum(x => x.AveragePoints());
         }
     }
 }
