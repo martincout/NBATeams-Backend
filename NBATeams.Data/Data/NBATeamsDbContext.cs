@@ -11,9 +11,9 @@ namespace NBATeams.Data.Data
     public class NBATeamsDbContext : DbContext
     {
         public DbSet<Player> Players { get; set; }
-        public DbSet<Team> Teams { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<CustomTeam> CustomTeam { get; set; }
+        public DbSet<CustomTeam> CustomTeams { get; set; }
+        public DbSet<OfficialTeam> OfficialTeams { get; set; }
         public DbSet<Stat> Stats { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,12 +25,12 @@ namespace NBATeams.Data.Data
         {
             //Delete behaviour of Game with two Teams.
             modelBuilder.Entity<Game>()
-                .HasOne<Team>(t => t.Local)
+                .HasOne<OfficialTeam>(t => t.Local)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Game>()
-                .HasOne<Team>(t => t.Visit)
+                .HasOne<OfficialTeam>(t => t.Visit)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
 

@@ -28,14 +28,14 @@ namespace TestingConsole
                 }
             };
 
-            Team team = new Team()
+            OfficialTeam team = new OfficialTeam()
             {
                 Name = "Toronto Raptors",
                 LogoPath = "",
                 Court = court,
             };
 
-            Team team2 = new Team()
+            OfficialTeam team2 = new OfficialTeam()
             {
                 Name = "Memphis Grizzlies",
                 LogoPath = "",

@@ -1,16 +1,15 @@
-﻿using System;
+﻿using NBATeams.Domain.DTO;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NBATeams.Data.Models
+namespace NBATeams.Domain.DTOs
 {
-    [Table("CustomTeams")]
-    public class CustomTeam : Team
+    public class CustomTeamDTO
     {
-        public User User { get; set; }
+        public UserDTO User { get; set; }
         public int Wins { get; set; } = 0;
         public int Lost { get; set; } = 0;
     }

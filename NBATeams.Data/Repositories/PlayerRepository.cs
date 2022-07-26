@@ -50,13 +50,13 @@ namespace NBATeams.Data.Repositories
             }
         }
 
-        public void AddTeam(Team Team)
+        public void AddTeam(OfficialTeam Team)
         {
             if (Team != null)
             {
                 try
                 {
-                    _context.Teams.Add(Team);
+                    _context.OfficialTeams.Add(Team);
                     _context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -110,12 +110,12 @@ namespace NBATeams.Data.Repositories
 
         public bool DeleteTeam(int TeamId)
         {
-            Team team = _context.Teams.Find(TeamId);
+            OfficialTeam team = _context.OfficialTeams.Find(TeamId);
             if (team != null)
             {
                 try
                 {
-                    _context.Teams.Remove(team);
+                    _context.OfficialTeams.Remove(team);
                     _context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -186,14 +186,32 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Team> GetAllTeams()
         {
-            return _context.Teams;
+            return _context.OfficialTeams;
+        }
+
+        public IEnumerable<OfficialTeam> GetAllOfficialTeams()
+        {
+            return _context.OfficialTeams;
+        }
+
+        public IEnumerable<CustomTeam> GetAllCustomTeams()
+        {
+            return _context.CustomTeams;
         }
 
         public Team GetTeamById(int TeamId)
         {
-            return _context.Teams
-                .Include(p => p.Court)
-                .Include(p => p.Awards)
+            return _context.OfficialTeams
+                .FirstOrDefault(x => x.Id == TeamId);
+        }
+        public CustomTeam GetCustomTeamById(int TeamId)
+        {
+            return _context.CustomTeams
+                .FirstOrDefault(x => x.Id == TeamId);
+        }
+        public OfficialTeam GetOfficialTeamById(int TeamId)
+        {
+            return _context.OfficialTeams
                 .FirstOrDefault(x => x.Id == TeamId);
         }
         /// <summary>
@@ -215,6 +233,36 @@ namespace NBATeams.Data.Repositories
         public Game GetGameById(int id)
         {
             return _context.Games.Find(id);
+        }
+
+        public Team EditCustomTeam(CustomTeam UpdatedTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Team EditOfficialTeam(OfficialTeam UpdatedTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OfficialTeam EditCustomTeam(OfficialTeam oldTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        CustomTeam IPlayerRepository.EditCustomTeam(CustomTeam UpdatedTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        OfficialTeam IPlayerRepository.EditOfficialTeam(OfficialTeam UpdatedTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTeam(Team Team)
+        {
+            throw new NotImplementedException();
         }
     }
 }

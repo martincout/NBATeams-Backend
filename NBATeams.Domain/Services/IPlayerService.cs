@@ -9,6 +9,10 @@ namespace NBATeams.Domain.Services
 
         public IEnumerable<TeamDTO> GetAllTeams();
 
+        public IEnumerable<CustomTeamDTO> GetAllCustomTeams();
+
+        public IEnumerable<OfficialTeam> GetAllOfficialTeams();
+
         public IEnumerable<GameDTO> GetAllGames();
 
         public IEnumerable<TeamRegisterPlayerDTO> GetAllTeamsAddPlayer();
@@ -16,7 +20,6 @@ namespace NBATeams.Domain.Services
         public IEnumerable<PlayerDTO> GetPlayersByTeam(string TeamName);
 
         public PlayerDTO GetPlayerById(int PlayerId);
-
 
         public TeamDTO GetTeamById(int TeamId);
 
@@ -29,6 +32,10 @@ namespace NBATeams.Domain.Services
         public Player EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer);
 
         public Team EditTeam(int TeamID, TeamDTO UpdatedTeam);
+        
+        public CustomTeam EditTeam(int TeamID, CustomTeamDTO UpdatedTeam);
+
+        public OfficialTeam EditTeam(int TeamID, OfficialTeam UpdatedTeam);
 
         public Game EditGame(int GameID, GameDTO UpdatedGame);
 

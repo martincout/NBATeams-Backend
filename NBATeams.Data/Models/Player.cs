@@ -19,8 +19,7 @@ namespace NBATeams.Data.Models
         public Stat Stats { get; set; }
         public DateTime BirthDate { get; set; }
         public string Experience { get; set; } //Rookie, 2 year, 3 years.
-        public Team? Team { get; set; }
-
+        public OfficialTeam? Team { get; set; }
         public List<CustomTeam> CustomTeams { get; set; }
         public int Age()
         {

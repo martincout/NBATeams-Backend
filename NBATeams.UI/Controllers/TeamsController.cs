@@ -24,14 +24,25 @@ namespace NBATeams.UI.Controllers
         }
 
         // GET: api/Teams
-        [HttpGet]
-        public ActionResult<IEnumerable<TeamDTO>> GetTeams()
+        [HttpGet("officialteams")]
+        public ActionResult<IEnumerable<OfficialTeamDTO>> GetOfficialTeams()
         {
-          if (_playerService.GetAllTeams() == null)
-          {
-              return NotFound();
-          }
-            return Ok(_playerService.GetAllTeams());
+            if (_playerService.GetAllTeams() == null)
+            {
+                return NotFound();
+            }
+            return Ok(_playerService.GetAllOfficialTeams());
+        }
+
+        // GET: api/Teams
+        [HttpGet("customteams")]
+        public ActionResult<IEnumerable<CustomTeamDTO>> GetCustomTeams()
+        {
+            if (_playerService.GetAllTeams() == null)
+            {
+                return NotFound();
+            }
+            return Ok(_playerService.GetAllCustomTeams());
         }
 
         // GET: api/Teams
@@ -47,7 +58,7 @@ namespace NBATeams.UI.Controllers
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
-        public ActionResult<Team> GetTeam(int id)
+        public ActionResult<OfficialTeam> GetTeam(int id)
         {
           if (_playerService.GetTeamById(id)== null)
           {

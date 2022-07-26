@@ -90,7 +90,7 @@ namespace NBATeams.Domain.Services
                      Stats = stats,
                      BirthDate = Player.BirthDate,
                      Experience = Player.Experience,
-                     Team = team,
+                     Team = (OfficialTeam) team,
                      Height = Player.Height,
                      Weight = Player.Weight,
                 };
@@ -160,7 +160,7 @@ namespace NBATeams.Domain.Services
                 oldPlayer.Stats.PIE = UpdatedPlayer.Stats.PIE;
                 oldPlayer.Stats.Assists = UpdatedPlayer.Stats.Assists;
                 //Team
-                Team team = _playerRepository.GetTeamById(UpdatedPlayer.TeamId);
+                OfficialTeam team = _playerRepository.GetOfficialTeamById(UpdatedPlayer.TeamId);
                 //Player
                 oldPlayer.ImageProfilePath = UpdatedPlayer.ImageProfilePath;
                 oldPlayer.Name = UpdatedPlayer.Name;
@@ -176,17 +176,17 @@ namespace NBATeams.Domain.Services
             return null;
         }
 
-        public Team EditTeam(int TeamID, TeamDTO UpdatedTeam)
+        public OfficialTeam EditTeam(int TeamID, TeamDTO UpdatedTeam)
         {
-            var oldTeam = _playerRepository.GetTeamById(TeamID);
+            var oldTeam = _playerRepository.GetOfficialTeamById(TeamID);
             if (oldTeam != null)
             {
-                Court court = _playerRepository.GetTeamById(TeamID).Court;
+                Court court = _playerRepository.GetOfficialTeamById(TeamID).Court;
                 court.Name = UpdatedTeam.Court.Name;
                 oldTeam.Name = UpdatedTeam.Name;
                 oldTeam.Court = court;
                 //Team
-                return _playerRepository.EditTeam(oldTeam);
+                return _playerRepository.EditCustomTeam(oldTeam);
 
             }
             return null;
@@ -197,6 +197,36 @@ namespace NBATeams.Domain.Services
             var team = _playerRepository.GetTeamById(TeamId);
             var teamToReturn = _mapper.Map<TeamDTO>(team);
             return teamToReturn;
+        }
+
+        public IEnumerable<CustomTeamDTO> GetAllCustomTeams()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<OfficialTeamDTO> GetAllOfficialTeams()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<OfficialTeam> IPlayerService.GetAllOfficialTeams()
+        {
+            throw new NotImplementedException();
+        }
+
+        Team IPlayerService.EditTeam(int TeamID, TeamDTO UpdatedTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CustomTeam EditTeam(int TeamID, CustomTeamDTO UpdatedTeam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OfficialTeam EditTeam(int TeamID, OfficialTeam UpdatedTeam)
+        {
+            throw new NotImplementedException();
         }
     }
 }
