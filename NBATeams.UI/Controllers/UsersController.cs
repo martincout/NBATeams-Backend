@@ -27,6 +27,15 @@ namespace Petfy.UI.WebAPI.Controllers
         }
 
         //Get
+        //GetUsers
+        //[Authorize(Policy = "RequireAdminRole")]
+        [HttpGet("userrole")]
+        public ActionResult<IEnumerable<AppUserRole>> GetUsersRole()
+        {
+            return Ok(_context.UserRoles.ToList());
+        }
+
+        //Get
         //GetUserById
         [Authorize(Roles = "Admin, Owner")]
         [HttpGet("{id}")]
