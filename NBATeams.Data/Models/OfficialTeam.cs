@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Data.Models
 {
-    [Table("OfficialTeams")]
     public class OfficialTeam : Team
     {
         public Court Court { get; set; }

@@ -7,7 +7,7 @@ namespace NBATeams.Domain.Services
     {
         public IEnumerable<PlayerDTO> GetAllPlayers();
 
-        public IEnumerable<TeamDTO> GetAllTeams();
+        public IEnumerable<Team> GetAllTeams();
 
         public IEnumerable<CustomTeamDTO> GetAllCustomTeams();
 

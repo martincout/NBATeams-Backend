@@ -35,16 +35,15 @@ namespace NBATeams.Domain.Services
             return playersToReturn;
         }
 
-        public IEnumerable<TeamDTO> GetAllTeams()
+        public IEnumerable<Team> GetAllTeams()
         {
             var teams = _playerRepository.GetAllTeams();
-            var teamsToReturn = _mapper.Map<IEnumerable<TeamDTO>>(teams);
-            return teamsToReturn;
+            return teams;
         }
 
         public IEnumerable<TeamRegisterPlayerDTO> GetAllTeamsAddPlayer()
         {
-            var teams = _playerRepository.GetAllTeams();
+            var teams = _playerRepository.GetAllOfficialTeams();
             var teamsToReturn = _mapper.Map<IEnumerable<TeamRegisterPlayerDTO>>(teams);
             return teamsToReturn;
         }
@@ -204,16 +203,13 @@ namespace NBATeams.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<OfficialTeamDTO> GetAllOfficialTeams()
+        public IEnumerable<OfficialTeam> GetAllOfficialTeams()
         {
-            throw new NotImplementedException();
+            var teams = _playerRepository.GetAllOfficialTeams();
+            return teams;
         }
 
-        IEnumerable<OfficialTeam> IPlayerService.GetAllOfficialTeams()
-        {
-            throw new NotImplementedException();
-        }
-
+      
         Team IPlayerService.EditTeam(int TeamID, TeamDTO UpdatedTeam)
         {
             throw new NotImplementedException();

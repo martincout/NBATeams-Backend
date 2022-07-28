@@ -24,8 +24,8 @@ namespace NBATeams.UI.Controllers
         }
 
         // GET: api/Teams
-        [HttpGet("officialteams")]
-        public ActionResult<IEnumerable<OfficialTeamDTO>> GetOfficialTeams()
+        [HttpGet()]
+        public ActionResult<IEnumerable<OfficialTeam>> GetOfficialTeams()
         {
             if (_playerService.GetAllTeams() == null)
             {
