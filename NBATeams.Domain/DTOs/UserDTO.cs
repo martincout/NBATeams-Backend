@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Petfy.Domain.DTO
+namespace NBATeams.Domain.DTOs
 {
     public class UserDTO
     {

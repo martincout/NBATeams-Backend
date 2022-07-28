@@ -11,7 +11,7 @@ namespace NBATeams.Data.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Player> Players { get; set; } = new List<Player>();
-        public User User { get; set; }
+        public AppUser User { get; set; }
         public int Wins { get; set; }
         public int Lost { get; set; }
     }
