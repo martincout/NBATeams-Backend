@@ -96,14 +96,14 @@ namespace TestingConsole
             team2.Players.Add(player3);
             team2.Players.Add(player4);
 
-            Game game = new Game()
-            {
-                DateGame = DateTime.Now,
-                ScoreLocal = 10,
-                ScoreVisit = 9,
-                Local = team,
-                Visit = team2
-            };
+            //Game game = new Game()
+            //{
+            //    DateGame = DateTime.Now,
+            //    ScoreLocal = 10,
+            //    ScoreVisit = 9,
+            //    Local = team,
+            //    Visit = team2
+            //};
             /// <summary>
             /// Test Data. Create Database using ENTITY FRAMEWORK-114
             /// </summary>
@@ -115,7 +115,6 @@ namespace TestingConsole
                 db.AddRange(team2.Players);
                 db.Add(team);
                 db.Add(team2);
-                db.Add(game);
 
                 db.SaveChanges();
                 Console.WriteLine("Saved to Database");

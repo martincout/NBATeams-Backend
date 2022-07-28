@@ -89,7 +89,6 @@ namespace NBATeams.Domain.Services
                      Stats = stats,
                      BirthDate = Player.BirthDate,
                      Experience = Player.Experience,
-                     Team = (OfficialTeam) team,
                      Height = Player.Height,
                      Weight = Player.Weight,
                 };

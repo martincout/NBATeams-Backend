@@ -7,11 +7,18 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Data.Models
 {
-    [Table("CustomTeams")]
-    public class CustomTeam : Team
+    public class CustomTeam
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Wins { get; set; }
+        public int Lost { get; set; }
+        public List<Player> Players { get; set; } = new List<Player>();
         public User User { get; set; }
-        public int Wins { get; set; } = 0;
-        public int Lost { get; set; } = 0;
+
+        public int AverageTeam()
+        {
+            return Players.Select(x => x.Stats).Sum(x => x.AveragePoints());
+        }
     }
 }

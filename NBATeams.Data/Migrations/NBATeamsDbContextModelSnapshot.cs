@@ -84,6 +84,34 @@ namespace NBATeams.Data.Migrations
                     b.ToTable("Court");
                 });
 
+            modelBuilder.Entity("NBATeams.Data.Models.CustomTeam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Lost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wins")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CustomTeams");
+                });
+
             modelBuilder.Entity("NBATeams.Data.Models.Game", b =>
                 {
                     b.Property<int>("Id")
@@ -137,6 +165,38 @@ namespace NBATeams.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Location");
+                });
+
+            modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CourtId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LogoPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Lost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Wins")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourtId");
+
+                    b.ToTable("OfficialTeams");
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Player", b =>
@@ -233,17 +293,17 @@ namespace NBATeams.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Lost")
+                    b.Property<int?>("CustomTeamId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Wins")
+                    b.Property<int?>("OfficialTeamId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomTeamId");
+
+                    b.HasIndex("OfficialTeamId");
 
                     b.ToTable("Teams");
                 });
@@ -259,34 +319,6 @@ namespace NBATeams.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("NBATeams.Data.Models.CustomTeam", b =>
-                {
-                    b.HasBaseType("NBATeams.Data.Models.Team");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CustomTeams");
-                });
-
-            modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
-                {
-                    b.HasBaseType("NBATeams.Data.Models.Team");
-
-                    b.Property<int>("CourtId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LogoPath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CourtId");
-
-                    b.ToTable("OfficialTeams");
                 });
 
             modelBuilder.Entity("CustomTeamPlayer", b =>
@@ -326,6 +358,17 @@ namespace NBATeams.Data.Migrations
                     b.Navigation("Location");
                 });
 
+            modelBuilder.Entity("NBATeams.Data.Models.CustomTeam", b =>
+                {
+                    b.HasOne("NBATeams.Data.Models.User", "User")
+                        .WithMany("CustomTeams")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("NBATeams.Data.Models.Game", b =>
                 {
                     b.HasOne("NBATeams.Data.Models.Team", "Local")
@@ -345,6 +388,17 @@ namespace NBATeams.Data.Migrations
                     b.Navigation("Visit");
                 });
 
+            modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
+                {
+                    b.HasOne("NBATeams.Data.Models.Court", "Court")
+                        .WithMany()
+                        .HasForeignKey("CourtId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Court");
+                });
+
             modelBuilder.Entity("NBATeams.Data.Models.Player", b =>
                 {
                     b.HasOne("NBATeams.Data.Models.Stat", "Stats")
@@ -362,43 +416,19 @@ namespace NBATeams.Data.Migrations
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("NBATeams.Data.Models.CustomTeam", b =>
+            modelBuilder.Entity("NBATeams.Data.Models.Team", b =>
                 {
-                    b.HasOne("NBATeams.Data.Models.Team", null)
-                        .WithOne()
-                        .HasForeignKey("NBATeams.Data.Models.CustomTeam", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("NBATeams.Data.Models.User", "User")
-                        .WithMany("CustomTeams")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
-                {
-                    b.HasOne("NBATeams.Data.Models.Court", "Court")
+                    b.HasOne("NBATeams.Data.Models.CustomTeam", "CustomTeam")
                         .WithMany()
-                        .HasForeignKey("CourtId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomTeamId");
 
-                    b.HasOne("NBATeams.Data.Models.Team", null)
-                        .WithOne()
-                        .HasForeignKey("NBATeams.Data.Models.OfficialTeam", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                    b.HasOne("NBATeams.Data.Models.OfficialTeam", "OfficialTeam")
+                        .WithMany()
+                        .HasForeignKey("OfficialTeamId");
 
-                    b.Navigation("Court");
-                });
+                    b.Navigation("CustomTeam");
 
-            modelBuilder.Entity("NBATeams.Data.Models.User", b =>
-                {
-                    b.Navigation("CustomTeams");
+                    b.Navigation("OfficialTeam");
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
@@ -406,6 +436,11 @@ namespace NBATeams.Data.Migrations
                     b.Navigation("Awards");
 
                     b.Navigation("Players");
+                });
+
+            modelBuilder.Entity("NBATeams.Data.Models.User", b =>
+                {
+                    b.Navigation("CustomTeams");
                 });
 #pragma warning restore 612, 618
         }

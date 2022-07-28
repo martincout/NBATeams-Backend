@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Data.Models
 {
-    [Table("OfficialTeams")]
-    public class OfficialTeam : Team
+    public class OfficialTeam 
     {
         public int Id { get; set; }
         public string Name { get; set; }

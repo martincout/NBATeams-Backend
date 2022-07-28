@@ -186,7 +186,7 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Team> GetAllTeams()
         {
-            return _context.OfficialTeams;
+            return _context.Teams;
         }
 
         public IEnumerable<OfficialTeam> GetAllOfficialTeams()
@@ -201,7 +201,7 @@ namespace NBATeams.Data.Repositories
 
         public Team GetTeamById(int TeamId)
         {
-            return _context.OfficialTeams
+            return _context.Teams
                 .FirstOrDefault(x => x.Id == TeamId);
         }
         public CustomTeam GetCustomTeamById(int TeamId)
