@@ -3,6 +3,8 @@ go
 
 SELECT * FROM [Stats];
 SELECT * FROM Players;
+SELECT * FROM OfficialTeams;
+
 
 SELECT * FROM dbo.Players
 JOIN [Stats] ON Players.StatsID = [Stats].Id
@@ -15,8 +17,11 @@ INSERT INTO [Location] (City,Street) VALUES ('Memphis, Tennessee','191 Beale St'
 INSERT INTO Court ([Name],LocationId) VALUES ('Scotiabank Arena',1)
 INSERT INTO Court ([Name],LocationId) VALUES ('FedExForum',2)
 
-INSERT INTO Teams ([Name],CourtId,LogoPath,Wins,Lost) VALUES ('Toronto Raptors',1,'', 15, 17)
-INSERT INTO Teams ([Name],CourtId,LogoPath,Wins,Lost) VALUES ('Memphis Grizzlies',2,'', 10, 8)
+INSERT INTO OfficialTeams ([Name],Wins,Lost,LogoPath,CourtId) VALUES ('Toronto Raptors',15,17,'', 1)
+INSERT INTO OfficialTeams ([Name],Wins,Lost,LogoPath,CourtId) VALUES ('Memphis Grizzlies',15,17,'', 2)
+
+INSERT INTO Teams (OfficialTeamId) VALUES (1)
+INSERT INTO Teams (OfficialTeamId) VALUES (2) -- Depends on the id of the second one
 
 
 --- Players Of Team -> Toronto Raptors
