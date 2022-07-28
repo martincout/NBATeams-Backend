@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -108,6 +109,29 @@ namespace NBATeams.UI.Controllers
 
         }
 
+        [HttpGet ("playername")]
+        public ActionResult<IEnumerable<Player>> GetPlayersByName(string playername)
+        {
+            if(String.IsNullOrEmpty(playername) || Regex.IsMatch(playername, @"^[a-zA-Z]+$"))
+            {
+                Console.WriteLine(playername);
+                return BadRequest(string.Empty);
+            }
+
+            return Ok(_playerService.getPlayersByName(playername));
+        }
+
+        [HttpGet("teamname")]
+        public ActionResult<IEnumerable<Player>> GetPlayersByTeamName(string teamname)
+        {
+            if (String.IsNullOrEmpty(teamname) || Regex.IsMatch(teamname, @"^[a-zA-Z]+$"))
+            {
+                Console.WriteLine(teamname);
+                return BadRequest(string.Empty);
+            }
+
+            return Ok(_playerService.GetPlayersByTeam(teamname));
+        }
         private bool PlayerExists(int id)
         {
             return (_playerService.GetPlayerById(id) != null);

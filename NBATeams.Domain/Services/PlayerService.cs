@@ -49,6 +49,13 @@ namespace NBATeams.Domain.Services
             return playerToReturn;
         }
 
+        public IEnumerable<PlayerDTO> getPlayersByName(string playerName)
+        {
+            var players = _playerRepository.GetPlayersByTeamName(playerName);
+            var playersToReturn = _mapper.Map<IEnumerable<PlayerDTO>>(players);
+            return playersToReturn;
+
+        }
         public IEnumerable<PlayerDTO> GetPlayersByTeam(string TeamName)
         {
             var players = _playerRepository.GetPlayersByTeamName(TeamName);
@@ -126,12 +133,50 @@ namespace NBATeams.Domain.Services
 
         public bool DeletePlayer(int PlayerId)
         {
-            throw new NotImplementedException();
+            if (PlayerId <= 0)
+            {
+                return false;
+            }
+
+            var player = _playerRepository.GetPlayerById(PlayerId);
+
+            if (player == null)
+            {
+                throw new ApplicationException("Player not found");
+            }
+
+            try
+            {
+                return _playerRepository.DeletePlayer(PlayerId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool DeleteTeam(int TeamId)
         {
-            throw new NotImplementedException();
+            if (TeamId <= 0)
+            {
+                return false;
+            }
+
+            var team = _playerRepository.GetTeamById(TeamId);
+
+            if (team == null)
+            {
+                throw new ApplicationException("Team not found");
+            }
+
+            try
+            {
+                return _playerRepository.DeleteTeam(TeamId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Game EditGame(int GameID, GameDTO UpdatedGame)
@@ -191,5 +236,7 @@ namespace NBATeams.Domain.Services
             var teamToReturn = _mapper.Map<TeamDTO>(team);
             return teamToReturn;
         }
+
+   
     }
 }
