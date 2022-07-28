@@ -12,7 +12,7 @@ using NBATeams.Data.Data;
 namespace NBATeams.Data.Migrations
 {
     [DbContext(typeof(NBATeamsDbContext))]
-    [Migration("20220728172535_Initial")]
+    [Migration("20220728184909_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,10 +235,6 @@ namespace NBATeams.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Lost")
                         .HasColumnType("int");
 
@@ -252,8 +248,6 @@ namespace NBATeams.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Team");
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.User", b =>
@@ -278,7 +272,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasDiscriminator().HasValue("CustomTeam");
+                    b.ToTable("CustomTeams");
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
@@ -294,7 +288,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("CourtId");
 
-                    b.HasDiscriminator().HasValue("OfficialTeam");
+                    b.ToTable("OfficialTeams");
                 });
 
             modelBuilder.Entity("CustomTeamPlayer", b =>
@@ -372,6 +366,12 @@ namespace NBATeams.Data.Migrations
 
             modelBuilder.Entity("NBATeams.Data.Models.CustomTeam", b =>
                 {
+                    b.HasOne("NBATeams.Data.Models.Team", null)
+                        .WithOne()
+                        .HasForeignKey("NBATeams.Data.Models.CustomTeam", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
                     b.HasOne("NBATeams.Data.Models.User", "User")
                         .WithMany("CustomTeams")
                         .HasForeignKey("UserId")
@@ -387,6 +387,12 @@ namespace NBATeams.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CourtId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NBATeams.Data.Models.Team", null)
+                        .WithOne()
+                        .HasForeignKey("NBATeams.Data.Models.OfficialTeam", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Court");

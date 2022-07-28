@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Data.Models
 {
+    [Table("CustomTeams")]
     public class CustomTeam : Team
     {
         public User User { get; set; }
