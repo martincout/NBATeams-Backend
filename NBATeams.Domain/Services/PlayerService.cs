@@ -197,9 +197,10 @@ namespace NBATeams.Domain.Services
             return teamToReturn;
         }
 
-        public IEnumerable<CustomTeamDTO> GetAllCustomTeams()
+        public IEnumerable<CustomTeam> GetAllCustomTeams()
         {
-            throw new NotImplementedException();
+            var teams = _playerRepository.GetAllCustomTeams();
+            return teams;
         }
 
         public IEnumerable<OfficialTeam> GetAllOfficialTeams()
@@ -222,6 +223,18 @@ namespace NBATeams.Domain.Services
         public OfficialTeam EditTeam(int TeamID, OfficialTeam UpdatedTeam)
         {
             throw new NotImplementedException();
+        }
+
+        public OfficialTeam GetOfficialTeamById(int id)
+        {
+            var team = _playerRepository.GetOfficialTeamById(id);
+            return team;
+        }
+
+        public CustomTeam GetCustomTeamById(int id)
+        {
+            var team = _playerRepository.GetCustomTeamById(id);
+            return team;
         }
     }
 }

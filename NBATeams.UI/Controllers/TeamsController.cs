@@ -24,10 +24,10 @@ namespace NBATeams.UI.Controllers
         }
 
         // GET: api/Teams
-        [HttpGet()]
+        [HttpGet("officialteams")]
         public ActionResult<IEnumerable<OfficialTeam>> GetOfficialTeams()
         {
-            if (_playerService.GetAllTeams() == null)
+            if (_playerService.GetAllOfficialTeams() == null)
             {
                 return NotFound();
             }
@@ -38,7 +38,7 @@ namespace NBATeams.UI.Controllers
         [HttpGet("customteams")]
         public ActionResult<IEnumerable<CustomTeamDTO>> GetCustomTeams()
         {
-            if (_playerService.GetAllTeams() == null)
+            if (_playerService.GetAllCustomTeams() == null)
             {
                 return NotFound();
             }
