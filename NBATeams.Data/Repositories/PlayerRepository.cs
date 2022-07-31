@@ -264,5 +264,39 @@ namespace NBATeams.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void AddOfficialTeam(OfficialTeam officialTeam, Team team)
+        {
+            if (officialTeam != null && team != null)
+            {
+                try
+                {
+                    _context.Teams.Add(team);
+                    _context.OfficialTeams.Add(officialTeam);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public void AddCustomTeam(CustomTeam customTeam, Team team)
+        {
+            if (customTeam != null && team != null)
+            {
+                try
+                {
+                    _context.Teams.Add(team);
+                    _context.CustomTeams.Add(customTeam);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

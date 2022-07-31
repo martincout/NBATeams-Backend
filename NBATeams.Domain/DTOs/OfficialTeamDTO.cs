@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Domain.DTOs
 {
-    public class OfficialTeamDTO
+    public class OfficialTeamDTO : TeamDTO
     {
         public CourtDTO Court { get; set; }
         public string LogoPath { get; set; }

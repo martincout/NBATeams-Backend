@@ -35,6 +35,10 @@ namespace NBATeams.Data.Repositories
 
         public void AddTeam(Team Team);
 
+        public void AddOfficialTeam(OfficialTeam Team, Team team);
+
+        public void AddCustomTeam(CustomTeam Team, Team team);
+
         public void AddGame(Game Game);
 
         public Player EditPlayer(Player UpdatedPlayer);

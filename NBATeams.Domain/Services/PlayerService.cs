@@ -236,5 +236,36 @@ namespace NBATeams.Domain.Services
             var team = _playerRepository.GetCustomTeamById(id);
             return team;
         }
+
+        public void AddOfficialTeam(OfficialTeamDTO officialTeam)
+        {
+            try
+            {
+                var court = _mapper.Map<Court>(officialTeam.Court);
+                OfficialTeam official = new OfficialTeam()
+                {
+                    Name = officialTeam.Name,
+                    Court = (Court) court,
+                    LogoPath = officialTeam.LogoPath,
+                     Wins = officialTeam.Wins,
+                     Lost = officialTeam.Lost,
+                };
+
+                Team team = new Team()
+                {
+                    OfficialTeam = official
+                };
+                _playerRepository.AddOfficialTeam(official,team);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void AddCustomTeam(CustomTeamDTO Team)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

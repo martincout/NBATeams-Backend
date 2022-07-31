@@ -53,6 +53,8 @@ namespace Petfy.Domain.Extensions
                             p => p.Location.Street
                         )
                 );
+
+            CreateMap<CourtDTO, Court>();
             /*CreateMap<Pet, PetDTO>()
                 .ForMember(
                     dest => dest.MainPhotoUrl,

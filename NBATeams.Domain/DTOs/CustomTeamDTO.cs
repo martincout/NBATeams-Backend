@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Domain.DTOs
 {
-    public class CustomTeamDTO
+    public class CustomTeamDTO : TeamDTO
     {
         public UserDTO User { get; set; }
         public int Wins { get; set; } = 0;

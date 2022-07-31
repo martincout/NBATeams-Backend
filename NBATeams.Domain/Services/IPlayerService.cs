@@ -31,6 +31,10 @@ namespace NBATeams.Domain.Services
 
         public void AddTeam(TeamDTO Team);
 
+        public void AddOfficialTeam(OfficialTeamDTO Team);
+
+        public void AddCustomTeam(CustomTeamDTO Team);
+
         public void AddGame(GameDTO Game);
 
         public Player EditPlayer(int PlayerId, PlayerDTO UpdatedPlayer);

@@ -24,6 +24,17 @@ namespace NBATeams.UI.Controllers
         }
 
         // GET: api/Teams
+        [HttpGet]
+        public ActionResult<IEnumerable<Team>> GetTeams()
+        {
+            if (_playerService.GetAllOfficialTeams() == null)
+            {
+                return NotFound();
+            }
+            return Ok(_playerService.GetAllOfficialTeams());
+        }
+
+        // GET: api/Teams
         [HttpGet("officialteams")]
         public ActionResult<IEnumerable<OfficialTeam>> GetOfficialTeams()
         {
@@ -105,14 +116,28 @@ namespace NBATeams.UI.Controllers
 
         // POST: api/Teams
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public ActionResult<TeamDTO> PostTeam(TeamDTO team)
+        [HttpPost("officialteam")]
+        public ActionResult<OfficialTeam> PostOfficialTeam(OfficialTeamDTO team)
         {
-          if (_playerService == null)
-          {
-              return Problem("Entity set 'NBATeamsDbContext'  is null.");
-          }
-            _playerService.AddTeam(team);
+            if (_playerService == null)
+            {
+                return Problem("Entity set 'NBATeamsDbContext'  is null.");
+            }
+            _playerService.AddOfficialTeam(team);
+
+            return CreatedAtAction("GetTeam", team);
+        }
+
+        // POST: api/Teams
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("customteam")]
+        public ActionResult<TeamDTO> PostCustomTeam(CustomTeamDTO team)
+        {
+            if (_playerService == null)
+            {
+                return Problem("Entity set 'NBATeamsDbContext'  is null.");
+            }
+            _playerService.AddCustomTeam(team);
 
             return CreatedAtAction("GetTeam", team);
         }
