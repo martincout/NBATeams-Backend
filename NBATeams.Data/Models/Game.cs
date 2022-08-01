@@ -32,7 +32,6 @@ namespace NBATeams.Data.Models
             int teamBAverage = ((OfficialTeam)teamB).AverageTeam();
 
 
-
             if (teamAAverage > teamBAverage)
             {
                 Team team;
