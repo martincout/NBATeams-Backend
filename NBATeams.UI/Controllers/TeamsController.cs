@@ -17,10 +17,12 @@ namespace NBATeams.UI.Controllers
     public class TeamsController : ControllerBase
     {
         private readonly IPlayerService _playerService;
+        private readonly IGameService _gameService;
 
-        public TeamsController(IPlayerService context)
+        public TeamsController(IPlayerService context, IGameService gameSer)
         {
             _playerService = context;
+            _gameService = gameSer;
         }
 
         // GET: api/Teams
@@ -162,6 +164,12 @@ namespace NBATeams.UI.Controllers
         private bool TeamExists(int id)
         {
             return (_playerService.GetTeamById(id) != null);
+        }
+
+        [HttpGet("match")]
+        public ActionResult<Team> Match(int teamLocalId, int teamVisitId)
+        {
+            return Ok(_gameService.MatchTwoTeams(teamLocalId, teamVisitId));
         }
     }
 }

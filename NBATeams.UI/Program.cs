@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();
