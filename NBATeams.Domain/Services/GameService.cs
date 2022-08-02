@@ -28,8 +28,24 @@ namespace NBATeams.Domain.Services
             Team Local = _playerRepository.GetTeamById(teamAId);
             Team Visit = _playerRepository.GetTeamById(teamBId);
 
-            IEnumerable<Player> playersA = _playerRepository.GetPlayersByTeamId(Local.Id);
-            IEnumerable<Player> playersB = _playerRepository.GetPlayersByTeamId(Visit.Id);
+            IEnumerable<Player> playersB;
+            IEnumerable<Player> playersA;
+
+            if (Local.GetTeam() is OfficialTeam) {
+                playersA = _playerRepository.GetPlayersByTeamId(Local.Id);
+            }
+            else {
+                playersA = _playerRepository.GetPlayersCustomTeamById(Local.Id);
+            }
+
+            if (Visit.GetTeam() is OfficialTeam)
+            {
+                playersB = _playerRepository.GetPlayersByTeamId(Visit.Id);
+            }
+            else
+            {
+                playersB = _playerRepository.GetPlayersCustomTeamById(Visit.Id);
+            }
 
             Game game = new Game()
             {
@@ -40,7 +56,7 @@ namespace NBATeams.Domain.Services
             int teamAAverage = playersA.Select(x => x.Stats).Sum(x => x.AveragePoints());
             int teamBAverage = playersB.Select(x => x.Stats).Sum(x => x.AveragePoints());
 
-            WinnerTeamDTO? winner = null;
+            WinnerTeamDTO? winner = new WinnerTeamDTO();
 
             if (teamAAverage > teamBAverage)
             {

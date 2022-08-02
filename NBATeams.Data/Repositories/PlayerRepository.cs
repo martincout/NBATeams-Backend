@@ -305,5 +305,11 @@ namespace NBATeams.Data.Repositories
                 .Include(x => x.Stats);
             return players;
         }
+
+        public IEnumerable<Player> GetPlayersCustomTeamById(int teamId)
+        {
+            var players = _context.CustomTeams.SelectMany(x => x.Players).Include(x => x.Stats);
+            return players;
+        }
     }
 }

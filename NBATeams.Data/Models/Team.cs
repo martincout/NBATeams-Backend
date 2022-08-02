@@ -19,5 +19,12 @@ namespace NBATeams.Data.Models
             if(CustomTeam != null) return CustomTeam.Name;
             return "";
         }
+
+        public TeamType? GetTeam()
+        {
+            if (OfficialTeam != null) return OfficialTeam;
+            if (CustomTeam != null) return CustomTeam;
+            return null;
+        }
     }
 }

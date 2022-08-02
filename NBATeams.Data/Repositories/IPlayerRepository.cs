@@ -21,6 +21,8 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Player> GetPlayersByTeamName(string teamName);
 
+        public IEnumerable<Player> GetPlayersCustomTeamById(int teamId);
+
         public IEnumerable<Player> GetPlayersByTeamId(int teamId);
         
         public Team GetTeamById(int id);

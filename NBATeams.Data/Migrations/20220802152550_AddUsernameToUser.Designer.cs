@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NBATeams.Data.Data;
 
@@ -11,9 +12,10 @@ using NBATeams.Data.Data;
 namespace NBATeams.Data.Migrations
 {
     [DbContext(typeof(NBATeamsDbContext))]
-    partial class NBATeamsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220802152550_AddUsernameToUser")]
+    partial class AddUsernameToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

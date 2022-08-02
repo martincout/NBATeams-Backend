@@ -4,7 +4,7 @@ go
 SELECT * FROM [Stats];
 SELECT * FROM Players;
 SELECT * FROM OfficialTeams;
-
+SELECT * FROM Off
 
 SELECT * FROM dbo.Players
 JOIN [Stats] ON Players.StatsID = [Stats].Id
@@ -22,6 +22,7 @@ INSERT INTO OfficialTeams ([Name],Wins,Lost,LogoPath,CourtId) VALUES ('Memphis G
 
 INSERT INTO Teams (OfficialTeamId) VALUES (1)
 INSERT INTO Teams (OfficialTeamId) VALUES (2) -- Depends on the id of the second one
+INSERT INTO Teams (CustomTeamId) VALUES (1) -- Depends on the id of the second one
 
 
 --- Players Of Team -> Toronto Raptors
@@ -56,3 +57,6 @@ VALUES ('Ziaire',' Williams',8, 2.06, 84,'https://cdn.nba.com/headshots/nba/late
 --DBCC CHECKIDENT ('Stats', RESEED, 0);
 
 
+UPDATE [Stats]
+SET PPG = 10
+WHERE Id = 1;
