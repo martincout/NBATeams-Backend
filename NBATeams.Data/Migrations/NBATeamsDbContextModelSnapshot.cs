@@ -34,7 +34,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("PlayersId");
 
-                    b.ToTable("CustomTeamPlayer");
+                    b.ToTable("CustomTeamPlayer", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Award", b =>
@@ -59,7 +59,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Award");
+                    b.ToTable("Award", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Court", b =>
@@ -81,7 +81,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Court");
+                    b.ToTable("Court", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.CustomTeam", b =>
@@ -109,7 +109,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CustomTeams");
+                    b.ToTable("CustomTeams", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Game", b =>
@@ -143,7 +143,7 @@ namespace NBATeams.Data.Migrations
                     b.HasIndex("VisitId")
                         .IsUnique();
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Location", b =>
@@ -164,7 +164,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Location");
+                    b.ToTable("Location", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.OfficialTeam", b =>
@@ -196,7 +196,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("CourtId");
 
-                    b.ToTable("OfficialTeams");
+                    b.ToTable("OfficialTeams", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Player", b =>
@@ -251,7 +251,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Stat", b =>
@@ -282,7 +282,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stats");
+                    b.ToTable("Stats", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.Team", b =>
@@ -305,7 +305,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasIndex("OfficialTeamId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("NBATeams.Data.Models.User", b =>
@@ -318,7 +318,7 @@ namespace NBATeams.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("CustomTeamPlayer", b =>

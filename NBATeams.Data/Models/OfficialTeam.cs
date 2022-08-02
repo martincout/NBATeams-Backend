@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NBATeams.Data.Models
 {
-    public class OfficialTeam 
+    public class OfficialTeam : TeamType
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,8 +17,7 @@ namespace NBATeams.Data.Models
         public Court Court { get; set; }
         public string LogoPath { get; set; }
         public List<Award> Awards { get; set; } = new List<Award>();
-
-        public int AverageTeam()
+        public override int AverageTeam()
         {
             return Players.Select(x => x.Stats).Sum(x => x.AveragePoints());
         }

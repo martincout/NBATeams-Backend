@@ -1,4 +1,5 @@
 ﻿using NBATeams.Data.Models;
+using NBATeams.Domain.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace NBATeams.Domain.Services
 {
     public interface IGameService
     {
-        public Team MatchTwoTeams(int teamA, int teamB);
+        public WinnerTeamDTO? MatchTwoTeams(int teamA, int teamB);
 
     }
 }

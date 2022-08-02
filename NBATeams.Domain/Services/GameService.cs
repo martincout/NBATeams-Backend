@@ -1,5 +1,6 @@
 ﻿using NBATeams.Data.Models;
 using NBATeams.Data.Repositories;
+using NBATeams.Domain.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +23,47 @@ namespace NBATeams.Domain.Services
         /// <param name="teamA"></param>
         /// <param name="teamB"></param>
         /// <returns>A winner Team</returns>
-        public Team? MatchTwoTeams(int teamAId, int teamBId)
+        public WinnerTeamDTO? MatchTwoTeams(int teamAId, int teamBId)
         {
-            Team teamA = _playerRepository.GetTeamById(teamAId);
-            Team teamB = _playerRepository.GetTeamById(teamBId);
+            Team Local = _playerRepository.GetTeamById(teamAId);
+            Team Visit = _playerRepository.GetTeamById(teamBId);
+
+            IEnumerable<Player> playersA = _playerRepository.GetPlayersByTeamId(Local.Id);
+            IEnumerable<Player> playersB = _playerRepository.GetPlayersByTeamId(Visit.Id);
+
             Game game = new Game()
             {
-                Local = teamA,
-                Visit = teamB
+                Local = Local,
+                Visit = Visit
             };
-            Team? winner = game.Match();
+            
+            int teamAAverage = playersA.Select(x => x.Stats).Sum(x => x.AveragePoints());
+            int teamBAverage = playersB.Select(x => x.Stats).Sum(x => x.AveragePoints());
+
+            WinnerTeamDTO? winner = null;
+
+            if (teamAAverage > teamBAverage)
+            {
+                winner = new WinnerTeamDTO()
+                {
+                    Id = Local.Id,
+                    Name = Local.GetTeamName(),
+                    AverageTeam = teamAAverage
+                };
+
+            }
+            if (teamAAverage < teamBAverage)
+            {
+                winner = new WinnerTeamDTO()
+                {
+                    Id = Visit.Id,
+                    Name = Visit.GetTeamName(),
+                    AverageTeam = teamBAverage
+                };
+            }
 
             return winner;
         }
+
     }
 }

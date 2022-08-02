@@ -167,7 +167,7 @@ namespace NBATeams.UI.Controllers
         }
 
         [HttpGet("match")]
-        public ActionResult<Team> Match(int teamLocalId, int teamVisitId)
+        public ActionResult<WinnerTeamDTO?> Match(int teamLocalId, int teamVisitId)
         {
             return Ok(_gameService.MatchTwoTeams(teamLocalId, teamVisitId));
         }

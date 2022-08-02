@@ -201,7 +201,7 @@ namespace NBATeams.Data.Repositories
 
         public Team GetTeamById(int TeamId)
         {
-            return _context.Teams
+            return _context.Teams.Include(x => x.CustomTeam).Include(x => x.OfficialTeam)
                 .FirstOrDefault(x => x.Id == TeamId);
         }
         public CustomTeam GetCustomTeamById(int TeamId)
@@ -227,7 +227,7 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Player> GetPlayersByTeamName(string TeamName)
         {
-            return _context.Players.Where(x => x.Team.Name == TeamName);
+            return _context.Players.Where(x => x.Team.Name == TeamName).Include(x => x.Stats);
         }
 
         public Game GetGameById(int id)
@@ -297,6 +297,13 @@ namespace NBATeams.Data.Repositories
                     throw ex;
                 }
             }
+        }
+
+        public IEnumerable<Player> GetPlayersByTeamId(int teamId)
+        {
+            var players = _context.Players.Where(x => x.Team.Id == teamId)
+                .Include(x => x.Stats);
+            return players;
         }
     }
 }
