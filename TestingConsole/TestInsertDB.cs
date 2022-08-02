@@ -6,13 +6,12 @@ using TestingConsole;
 using (var db = new NBATeamsDbContext())
 {
     db.Database.EnsureCreated();
-    Console.WriteLine("Database created");
+    Console.WriteLine("Saved to Database");
 }
 
+//}
 //Stat stat = new Stat()
 //{
-//    Height = 1.8,
-//    Weight = 100,
 //    RPG = 3,
 //    APG = 3,
 //    PIE = 3,
@@ -111,9 +110,9 @@ using (var db = new NBATeamsDbContext())
 //};
 
 ////Testing convertion of Weight
-//Console.WriteLine(player.Stats.WeightInLB());
+//Console.WriteLine(player.WeightInLB());
 
 ////Testing convertion of Height
-//Console.WriteLine(player.Stats.HeightInFeet());
+//Console.WriteLine(player.HeightInFeet());
 
-//CreateDatabase.Insert(); //inserts test data to database
+////CreateDatabase.Insert(); //inserts test data to database
