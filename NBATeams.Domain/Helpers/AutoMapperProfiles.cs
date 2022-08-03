@@ -26,7 +26,7 @@ namespace Petfy.Domain.Extensions
                             p => p.Age()
                         )
                 );
-            CreateMap<OfficialTeam, TeamRegisterPlayerDTO>()
+            CreateMap<OfficialTeam, TeamLessDTO>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.Name));
 
@@ -55,6 +55,17 @@ namespace Petfy.Domain.Extensions
                 );
 
             CreateMap<CourtDTO, Court>();
+
+            CreateMap<Team, TeamLessDTO>()
+                .ForMember(dest => dest.Name,
+                    opt => opt.MapFrom(
+                            p => p.GetTeamName())
+                    )
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(
+                            p => p.Id)
+                    );
+
             /*CreateMap<Pet, PetDTO>()
                 .ForMember(
                     dest => dest.MainPhotoUrl,

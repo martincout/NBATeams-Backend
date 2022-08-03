@@ -27,13 +27,13 @@ namespace NBATeams.UI.Controllers
 
         // GET: api/Teams
         [HttpGet]
-        public ActionResult<IEnumerable<Team>> GetTeams()
+        public ActionResult<IEnumerable<TeamLessDTO>> GetTeams()
         {
-            if (_playerService.GetAllOfficialTeams() == null)
+            if (_playerService.GetAllTeams() == null)
             {
                 return NotFound();
             }
-            return Ok(_playerService.GetAllOfficialTeams());
+            return Ok(_playerService.GetAllTeams());
         }
 
         // GET: api/Teams
@@ -60,7 +60,7 @@ namespace NBATeams.UI.Controllers
 
         // GET: api/Teams
         [HttpGet("name&id")]
-        public ActionResult<IEnumerable<TeamRegisterPlayerDTO>> GetTeamsAddPlayer()
+        public ActionResult<IEnumerable<TeamLessDTO>> GetTeamsAddPlayer()
         {
             if (_playerService.GetAllTeams() == null)
             {

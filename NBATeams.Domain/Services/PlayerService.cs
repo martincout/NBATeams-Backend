@@ -35,16 +35,17 @@ namespace NBATeams.Domain.Services
             return playersToReturn;
         }
 
-        public IEnumerable<Team> GetAllTeams()
+        public IEnumerable<TeamLessDTO> GetAllTeams()
         {
             var teams = _playerRepository.GetAllTeams();
-            return teams;
+            var teamsToReturn = _mapper.Map<IEnumerable<TeamLessDTO>>(teams);
+            return teamsToReturn;
         }
 
-        public IEnumerable<TeamRegisterPlayerDTO> GetAllTeamsAddPlayer()
+        public IEnumerable<TeamLessDTO> GetAllTeamsAddPlayer()
         {
             var teams = _playerRepository.GetAllOfficialTeams();
-            var teamsToReturn = _mapper.Map<IEnumerable<TeamRegisterPlayerDTO>>(teams);
+            var teamsToReturn = _mapper.Map<IEnumerable<TeamLessDTO>>(teams);
             return teamsToReturn;
         }
 

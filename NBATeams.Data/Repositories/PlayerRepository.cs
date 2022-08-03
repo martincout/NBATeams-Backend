@@ -186,7 +186,7 @@ namespace NBATeams.Data.Repositories
 
         public IEnumerable<Team> GetAllTeams()
         {
-            return _context.Teams;
+            return _context.Teams.Include(x => x.OfficialTeam).Include(x => x.CustomTeam);
         }
 
         public IEnumerable<OfficialTeam> GetAllOfficialTeams()
