@@ -206,10 +206,16 @@ namespace NBATeams.Data.Repositories
             return _context.Players.Include(p => p.Stats)
                 .FirstOrDefault(p => p.Id == PlayerId);
         }
-
-        public IEnumerable<Player> GetPlayersByTeamName(string TeamName)
+        public IEnumerable<Player> getPlayersByName(string playerName)
         {
-            return _context.Players.Where(x => x.Team.Name == TeamName);
+      
+            return _context.Players.Include(p => p.Stats)
+                .Where(p => p.Name.Contains(playerName));
+        }
+
+        public IEnumerable<Player> GetPlayersByTeamName(string teamName)
+        {
+            return _context.Players.Where(x => x.Team.Name == teamName);
         }
 
         public Game GetGameById(int id)

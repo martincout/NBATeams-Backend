@@ -108,6 +108,17 @@ namespace NBATeams.UI.Controllers
 
         }
 
+        [HttpGet("teamname")]
+        public ActionResult<IEnumerable<Player>> GetPlayersByTeamName(string teamname)
+        {
+            if (String.IsNullOrEmpty(teamname) || Regex.IsMatch(teamname, @"^[a-zA-Z]+$"))
+            {
+                Console.WriteLine(teamname);
+                return BadRequest(string.Empty);
+            }
+
+            return Ok(_playerService.GetPlayersByTeam(teamname));
+        }
         private bool PlayerExists(int id)
         {
             return (_playerService.GetPlayerById(id) != null);
